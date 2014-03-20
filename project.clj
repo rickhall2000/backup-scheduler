@@ -1,6 +1,6 @@
-(defproject backup-scheduler "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject backup-scheduler "0.1.0-1"
+  :description "Schdule builder for backup program"
+  :url "https://github.com/rickhall2000/backup-scheduler"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.6"]
                  [hiccup "1.0.4"]
