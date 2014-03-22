@@ -2,13 +2,13 @@
 
 (def data (atom
            {:next-id 3
-            :records {1
+            :records {"1"
                       {
                        :folder "c:\\vp10"
                        :full ["Friday"]
                        :incremental ["All"]
                        :target "vp10"}
-                      2
+                      "2"
                       {
                        :folder "c:\\js"
                        :full ["Friday"]
