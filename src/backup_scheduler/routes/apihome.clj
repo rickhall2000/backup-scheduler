@@ -17,7 +17,7 @@
 
 (defresource get-folder
   :handle-ok (fn [context]
-               (let [params (get-in context [:request :route-params])]  (m/get-folder (:id params)) ))
+               (let [params (get-in context [:request :route-params])]  (m/get-folder (read-string (:id params))) ))
   :allowed-methods [:get]
   :etag "fixed-etag"
   :available-media-types ["application/edn"])
