@@ -23,10 +23,12 @@
   :available-media-types ["application/edn"])
 
 (defresource create-folder
-  :post! "post goes here"
+  :post! (fn [context]
+           (let [body (slurp (get-in context [:request :body]))]
+               (m/add-folder body)))
   :allowed-methods [:post]
   :etag "fixed-etag"
-  :available-media-types ["Text/plain"])
+  :available-media-types ["application/edn" "Text/plain"])
 
 (defresource update-folder
   :handle-ok "update folder"
