@@ -26,24 +26,24 @@
     (swap! data updatefn)
     {id ((@data :records) id)}))
 
-#_(add-folder {:folder "test"})
-
 (defn get-folders []
   (:records @data))
 
 (defn get-folder [id]
-  ((:records @data) id))
+  {id ((:records @data) id)})
 
 
 (defn delete-folder [id]
   (let [updatefn (fn [data]
                    (assoc data :records
                           (dissoc (:records data) id)))]
-    (swap! data updatefn)))
+    (swap! data updatefn))
+  nil)
 
 (defn update-folder [folder]
   (let [record (first (keys folder))
         updatefn (fn [data]
                    (assoc-in data [:records record]
                              (folder record)))]
-    (swap! data updatefn)))
+    (swap! data updatefn)
+    {record ((:records @data) record)}))
