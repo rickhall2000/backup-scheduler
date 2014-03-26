@@ -5,7 +5,6 @@
 
 (defresource api-home
   :handle-ok "hello home"
-  :etag "fixed-etag"
   :allowed-methods [:get]
   :available-media-types ["text/plain"])
 
@@ -15,7 +14,6 @@
   :post! (fn [context]
            (let [body (slurp (get-in context [:request :body]))]
                (m/add-folder body)))
-  :etag "fixed-etag"
   :available-media-types ["application/edn"])
 
 (defresource folder [id]
