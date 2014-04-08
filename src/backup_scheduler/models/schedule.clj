@@ -30,7 +30,8 @@
   (:records @data))
 
 (defn get-folder [id]
-  {id ((:records @data) id)})
+  (do
+    {id ((:records @data) id)}))
 
 
 (defn delete-folder [id]
@@ -40,10 +41,14 @@
     (swap! data updatefn))
   nil)
 
-(defn update-folder [folder]
-  (let [record (first (keys folder))
-        updatefn (fn [data]
-                   (assoc-in data [:records record]
-                             (folder record)))]
+#_(defn update-folder [id folder]
+  (let [updatefn (fn [data]
+                   (assoc-in data [:records id] folder))]
+    (println folder)
+    {id ((:records @data) id)}))
+
+(defn update-folder [id folder]
+  (let [updatefn (fn [data]
+                   (assoc-in data [:records id] folder))]
     (swap! data updatefn)
-    {record ((:records @data) record)}))
+    {id ((:records @data) id)}))

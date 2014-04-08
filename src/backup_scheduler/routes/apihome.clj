@@ -11,14 +11,18 @@
 (defresource folders
   :allowed-methods [:get :post]
   :handle-ok (m/get-folders)
-  :post! (fn [context]
-           (let [body (slurp (get-in context [:request :body]))]
+  :post! (fn [ctx]
+           (let [body (slurp (get-in ctx [:request :body]))]
                (m/add-folder body)))
   :available-media-types ["application/edn"])
 
 (defresource folder [id]
   :allowed-methods [:get :put :delete]
-  :handle-ok  (m/get-folder (read-string id))
+  :handle-ok  (fn [_] (m/get-folder (read-string id)))
+  :delete! (fn [_] (m/delete-folder (read-string id)))
+  :put! (fn [ctx]
+          (let [body (read-string (slurp (get-in ctx [:request :body])))]
+            (m/update-folder (read-string id) body)))
   :etag "fixed-etag"
   :available-media-types ["application/edn"])
 
